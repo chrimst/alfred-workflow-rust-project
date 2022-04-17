@@ -73,7 +73,7 @@ mod workflow_item_tests {
             .valid(true)
             .matches("this_is_match")
             .mods(vec![ModKey::CMD, ModKey::CTRL], Modifier::new())
-            .mods(vec![],Modifier::new().subtitle("invalid_subtitle"))
+            .mods(vec![], Modifier::new().subtitle("invalid_subtitle"))
             .quick_look("quick_look_uri")
             .auto_complete("this_is_auto_complete_text")
             .vars("key_1", "value_1")
@@ -141,5 +141,30 @@ mod icon_tests {
         let icon_1_str = serde_json::to_string(&icon_1).unwrap();
         assert!(icon_1_str.contains("my_path"));
         assert!(icon_1_str.contains(IconType::ImageSelf.name()))
+    }
+}
+
+#[cfg(test)]
+mod env_tests {
+    use std::borrow::Borrow;
+    use crate::alfred::{Alfred, AlfredEnv};
+
+    #[test]
+    fn test_alfred_env_get_fine() {
+        dotenv::dotenv().ok();
+        let alfred = Alfred::init();
+        assert_eq!(alfred.get_preference_path(),"alfred_preferences");
+        assert_eq!(alfred.get_preference_hash_path(),"alfred_preferences_localhash");
+        assert_eq!(alfred.get_theme(),"alfred.theme.yosemite");
+        assert_eq!(alfred.get_theme_background(),"rgba(255,255,255,0.98)");
+        assert_eq!(alfred.get_theme_subtext(),"3");
+        assert_eq!(alfred.get_version_build(),"277");
+        assert_eq!(alfred.get_version(),"2.4");
+        assert_eq!(alfred.get_workflow_bundle_id(),"com.alfredapp.david.googlesuggest");
+        assert_eq!(alfred.get_workflow_cache_path(),"cache_path");
+        assert_eq!(alfred.get_workflow_data_path(),"cache_path");
+        assert_eq!(alfred.get_workflow_name(),"GoogleSuggest");
+        assert_eq!(alfred.get_workflow_uuid(),"user.workflow.B0AC54EC-601C-479A-9428-01F9FD732959");
+        assert!(alfred.is_debug_mode());
     }
 }
