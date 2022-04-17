@@ -6,6 +6,9 @@ mod alfred;
 mod workflow_keychain;
 mod version;
 mod workflow_updater;
+mod workflow_config;
+mod workflow_cache;
+mod alfred_logger;
 
 #[cfg(test)]
 mod tests {
