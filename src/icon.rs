@@ -3,7 +3,6 @@ use crate::common::EnumIdent;
 use serde::{Deserialize, Serialize};
 
 
-#[derive(Serialize, Deserialize)]
 pub enum IconType {
     IconFile,
     FileType,
