@@ -3,6 +3,7 @@ mod workflow_item;
 mod icon;
 mod common;
 mod alfred;
+mod workflow_keychain;
 
 #[cfg(test)]
 mod tests {
