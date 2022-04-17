@@ -1,5 +1,7 @@
 mod workflow;
 mod workflow_item;
+mod icon;
+mod common;
 
 #[cfg(test)]
 mod tests {
