@@ -4,6 +4,8 @@ mod icon;
 mod common;
 mod alfred;
 mod workflow_keychain;
+mod version;
+mod workflow_updater;
 
 #[cfg(test)]
 mod tests {
