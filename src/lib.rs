@@ -1,14 +1,14 @@
-mod workflow;
-mod workflow_item;
-mod icon;
-mod common;
 mod alfred;
-mod workflow_keychain;
-mod version;
-mod workflow_updater;
-mod workflow_config;
-mod workflow_cache;
 mod alfred_logger;
+mod common;
+mod icon;
+mod version;
+mod workflow;
+mod workflow_cache;
+mod workflow_config;
+mod workflow_item;
+mod workflow_keychain;
+mod workflow_updater;
 
 #[cfg(test)]
 mod tests {
@@ -39,10 +39,10 @@ mod workflow_tests {
 
 #[cfg(test)]
 mod workflow_item_tests {
-    use crate::workflow_item::{Action, ActionItem, ItemText, ItemType, Modifier, ModKey, WorkflowItem};
-    use serde::{Deserialize, Serialize, Serializer};
     use crate::icon::{BuiltinIcon, Icon};
-
+    use crate::workflow_item::{
+        Action, ActionItem, ItemText, ItemType, ModKey, Modifier, WorkflowItem,
+    };
 
     #[test]
     fn test_modifier_init_ok() {
@@ -66,7 +66,6 @@ mod workflow_item_tests {
         assert!(modifier_str.contains("cmd2"));
         assert!(modifier_str.contains("hello_kitty"));
     }
-
 
     #[test]
     fn test_workflow_item_build() {
@@ -108,13 +107,14 @@ mod workflow_item_tests {
 
     #[test]
     fn test_workflow_item_build_with_object_item_action() {
-        let item = WorkflowItem::new("test")
-            .actions(Action::ObjectItem(ActionItem::new()
+        let item = WorkflowItem::new("test").actions(Action::ObjectItem(
+            ActionItem::new()
                 .text("cc")
                 .texts(vec!["bb", "dd"])
                 .url("action_url")
                 .file("this_is_file")
-                .auto("use_auto")));
+                .auto("use_auto"),
+        ));
 
         let item_str = serde_json::to_string(&item).unwrap();
         assert!(item_str.contains("[\"cc\",\"bb\",\"dd\"]"));
@@ -126,7 +126,6 @@ mod workflow_item_tests {
         assert!(item_str.contains("use_auto"));
     }
 }
-
 
 #[cfg(test)]
 mod icon_tests {
@@ -152,25 +151,33 @@ mod icon_tests {
 
 #[cfg(test)]
 mod env_tests {
-    use std::borrow::Borrow;
     use crate::alfred::{Alfred, AlfredEnv};
 
     #[test]
     fn test_alfred_env_get_fine() {
         dotenv::dotenv().ok();
         let alfred = Alfred::init();
-        assert_eq!(alfred.get_preference_path(),"alfred_preferences");
-        assert_eq!(alfred.get_preference_hash_path(),"alfred_preferences_localhash");
-        assert_eq!(alfred.get_theme(),"alfred.theme.yosemite");
-        assert_eq!(alfred.get_theme_background(),"rgba(255,255,255,0.98)");
-        assert_eq!(alfred.get_theme_subtext(),"3");
-        assert_eq!(alfred.get_version_build(),"277");
-        assert_eq!(alfred.get_version(),"2.4");
-        assert_eq!(alfred.get_workflow_bundle_id(),"com.alfredapp.david.googlesuggest");
-        assert_eq!(alfred.get_workflow_cache_path(),"cache_path");
-        assert_eq!(alfred.get_workflow_data_path(),"cache_path");
-        assert_eq!(alfred.get_workflow_name(),"GoogleSuggest");
-        assert_eq!(alfred.get_workflow_uuid(),"user.workflow.B0AC54EC-601C-479A-9428-01F9FD732959");
+        assert_eq!(alfred.get_preference_path(), "alfred_preferences");
+        assert_eq!(
+            alfred.get_preference_hash_path(),
+            "alfred_preferences_localhash"
+        );
+        assert_eq!(alfred.get_theme(), "alfred.theme.yosemite");
+        assert_eq!(alfred.get_theme_background(), "rgba(255,255,255,0.98)");
+        assert_eq!(alfred.get_theme_subtext(), "3");
+        assert_eq!(alfred.get_version_build(), "277");
+        assert_eq!(alfred.get_version(), "2.4");
+        assert_eq!(
+            alfred.get_workflow_bundle_id(),
+            "com.alfredapp.david.googlesuggest"
+        );
+        assert_eq!(alfred.get_workflow_cache_path(), "cache_path");
+        assert_eq!(alfred.get_workflow_data_path(), "cache_path");
+        assert_eq!(alfred.get_workflow_name(), "GoogleSuggest");
+        assert_eq!(
+            alfred.get_workflow_uuid(),
+            "user.workflow.B0AC54EC-601C-479A-9428-01F9FD732959"
+        );
         assert!(alfred.is_debug_mode());
     }
 }

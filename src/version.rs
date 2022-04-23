@@ -1,7 +1,4 @@
-use serde::ser::SerializeSeq;
-use std::time::UNIX_EPOCH;
-use serde::{Deserialize, Serialize, Serializer};
-
+use serde::{Deserialize, Serialize};
 
 // version eg: v1.2.3-RC
 #[derive(Serialize, Deserialize, PartialEq)]
@@ -231,7 +228,7 @@ mod version_unit_test {
 
     #[test]
     fn test_version_equal() {
-        let v = Version::new("1.2.3").unwrap();
-        let v1 = Version::new("v1.2.3").unwrap();
+        let _v = Version::new("1.2.3").unwrap();
+        let _v1 = Version::new("v1.2.3").unwrap();
     }
 }

@@ -1,12 +1,10 @@
+use std::collections::HashMap;
+
 use serde::ser::SerializeSeq;
 use serde::{Deserialize, Serialize, Serializer};
-use std::collections::HashMap;
-use std::hash::Hash;
-use std::iter::Map;
+
 use crate::common::EnumIdent;
 use crate::icon::Icon;
-use crate::icon::IconType::IconFile;
-use crate::workflow_item::Action::SingleItem;
 
 // the key used for modifier
 pub enum ModKey {
@@ -83,7 +81,7 @@ impl EnumIdent for ModKey {
             ModKey::FN => "fn",
             ModKey::CTRL => "ctrl",
             ModKey::ALT => "alt",
-            ModKey::SHIFT => "shift"
+            ModKey::SHIFT => "shift",
         }
     }
 }
@@ -217,7 +215,6 @@ impl WorkflowItem {
     }
 }
 
-
 // in later
 #[derive(Deserialize)]
 pub enum Action {
@@ -228,8 +225,8 @@ pub enum Action {
 
 impl Serialize for Action {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         match self {
             Action::SingleItem(var) => serializer.serialize_str(var),

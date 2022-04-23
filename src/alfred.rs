@@ -1,6 +1,4 @@
-use serde::ser::SerializeSeq;
-use serde::{Deserialize, Serialize, Serializer};
-
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Alfred {}
@@ -9,7 +7,6 @@ impl Alfred {
     pub fn init() -> Alfred {
         Alfred {}
     }
-
 
     pub fn search() {}
     pub fn action() {}
@@ -48,7 +45,6 @@ impl AlfredEnv for Alfred {
         return std::env::var("alfred_preferences").unwrap_or_default();
     }
 
-
     fn get_preference_hash_path(&self) -> String {
         return std::env::var("alfred_preferences_localhash").unwrap_or_default();
     }
@@ -76,9 +72,7 @@ impl AlfredEnv for Alfred {
         return std::env::var("alfred_workflow_name").unwrap_or_default();
     }
     fn is_debug_mode(&self) -> bool {
-        return std::env::var("alfred_debug")
-            .unwrap_or_default()
-            .eq("1");
+        return std::env::var("alfred_debug").unwrap_or_default().eq("1");
     }
     fn get_workflow_uuid(&self) -> String {
         return std::env::var("alfred_workflow_uid").unwrap_or_default();

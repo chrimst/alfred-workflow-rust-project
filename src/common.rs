@@ -2,5 +2,3 @@
 pub trait EnumIdent {
     fn name(&self) -> &'static str;
 }
-
-

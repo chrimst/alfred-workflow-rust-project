@@ -1,8 +1,7 @@
-use std::time::UNIX_EPOCH;
-use crate::version::{ Version};
-use serde::ser::SerializeSeq;
-use serde::{Deserialize, Serialize, Serializer};
+use crate::version::Version;
 
+use serde::{Deserialize, Serialize};
+use std::time::UNIX_EPOCH;
 
 // const SYSTEM_ICON_PATH: &str = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/{}";
 // this files define the icons provided by the macos system
@@ -21,9 +20,9 @@ pub struct UpdateConfig {
     how_often: u8,
     last_check_time_stamp: u128,
 
-    current_version:Version,
+    current_version: Version,
 }
-pub fn check_update(current_version: &Version, config: &UpdateConfig) {
+pub fn check_update(_current_version: &Version, config: &UpdateConfig) {
     // check the `auto_update` config is on or off
     // exit
     if !config.auto_update {
@@ -36,9 +35,9 @@ pub fn check_update(current_version: &Version, config: &UpdateConfig) {
     let time_range: u128 = (config.how_often) as u128 * 24 * 60 * 60 * 1000;
     if config.last_check_time_stamp + time_range
         < std::time::SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap()
-        .as_millis()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_millis()
     {
         return;
     }

@@ -1,7 +1,6 @@
-use std::thread::sleep;
-use serde::{Serialize, Deserialize};
 use crate::alfred::{Alfred, AlfredEnv};
 use crate::workflow_item::WorkflowItem;
+use serde::{Deserialize, Serialize};
 
 // Alfred workflow object
 #[derive(Serialize, Deserialize)]
@@ -10,7 +9,6 @@ pub struct AlfredWorkflow {
     alfred: Alfred,
     items: Vec<WorkflowItem>,
 }
-
 
 impl AlfredWorkflow {
     pub fn init() -> Result<AlfredWorkflow, &'static str> {
