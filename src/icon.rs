@@ -75,95 +75,95 @@ impl BuiltinIcon {
         match self {
             BuiltinIcon::ACCOUNT => Icon::new(
                 build_icon_path(&"Accounts.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::BURN => Icon::new(
                 build_icon_path(&"BurningIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::CLOCK => Icon::new(
                 build_icon_path(&"Clock.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::COLOR => Icon::new(
                 build_icon_path(&"ProfileBackgroundColor.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::COLOUR => Icon::new(
                 build_icon_path(&"ProfileBackgroundColor.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::EJECT => Icon::new(
                 build_icon_path(&"EjectMediaIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::ERROR => Icon::new(
                 build_icon_path(&"AlertStopIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::FAVORITE => Icon::new(
                 build_icon_path(&"ToolbarFavoritesIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::FAVOURITE => Icon::new(
                 build_icon_path(&"ToolbarFavoritesIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::GROUP => Icon::new(
                 build_icon_path(&"GroupIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::HELP => Icon::new(
                 build_icon_path(&"HelpIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::HOME => Icon::new(
                 build_icon_path(&"HomeFolderIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::INFO => Icon::new(
                 build_icon_path(&"ToolbarInfo.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::NETWORK => Icon::new(
                 build_icon_path(&"GenericNetworkIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::NOTE => Icon::new(
                 build_icon_path(&"AlertNoteIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::SETTINGS => Icon::new(
                 build_icon_path(&"ToolbarAdvanced.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::SWIRL => Icon::new(
                 build_icon_path(&"ErasingIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::SWITCH => Icon::new(
                 build_icon_path(&"General.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::SYNC => Icon::new(
                 build_icon_path(&"Sync.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::TRASH => Icon::new(
                 build_icon_path(&"TrashIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::USER => Icon::new(
                 build_icon_path(&"UserIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::WARNING => Icon::new(
                 build_icon_path(&"AlertCautionIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
             BuiltinIcon::WEB => Icon::new(
                 build_icon_path(&"BookmarkIcon.icns").as_str(),
-                Some(IconType::IconFile),
+                None,
             ),
         }
     }

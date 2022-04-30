@@ -11,11 +11,11 @@ pub struct AlfredWorkflow {
 }
 
 impl AlfredWorkflow {
-    pub fn init() -> Result<AlfredWorkflow, &'static str> {
-        Ok(AlfredWorkflow {
+    pub fn init() -> AlfredWorkflow {
+        AlfredWorkflow {
             alfred: Alfred::init(),
             items: Vec::new(),
-        })
+        }
     }
 
     pub fn get_workflow_env(key: &str) -> String {
@@ -24,6 +24,11 @@ impl AlfredWorkflow {
 
     pub fn send_feedback(&self) {
         print!("{}", serde_json::to_string(self).unwrap())
+    }
+
+    pub fn add_item(mut self, item: WorkflowItem) -> AlfredWorkflow {
+        self.items.push(item);
+        self
     }
 }
 

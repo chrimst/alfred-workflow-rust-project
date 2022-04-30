@@ -1,14 +1,14 @@
-mod alfred;
-mod alfred_logger;
-mod common;
-mod icon;
-mod version;
-mod workflow;
-mod workflow_cache;
-mod workflow_config;
-mod workflow_item;
-mod workflow_keychain;
-mod workflow_updater;
+pub mod alfred;
+pub mod alfred_logger;
+pub mod common;
+pub mod icon;
+pub mod version;
+pub mod workflow;
+pub mod workflow_cache;
+pub mod workflow_config;
+pub mod workflow_item;
+pub mod workflow_keychain;
+pub mod workflow_updater;
 
 #[cfg(test)]
 mod tests {
@@ -26,12 +26,11 @@ mod workflow_tests {
     #[test]
     fn test_workflow_init_ok() {
         let workflow = AlfredWorkflow::init();
-        assert!(workflow.is_ok())
     }
 
     #[test]
     fn test_workflow_send_feedback_ok() {
-        let workflow = AlfredWorkflow::init().unwrap();
+        let workflow = AlfredWorkflow::init();
         workflow.send_feedback();
         assert!(true)
     }

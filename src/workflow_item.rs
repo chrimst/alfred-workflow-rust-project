@@ -113,7 +113,7 @@ pub struct WorkflowItem {
     #[serde(skip_serializing_if = "Option::is_none")]
     mods: Option<HashMap<String, Modifier>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    arg: Option<String>,
+    arg: Option<Vec<String>>,
     #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
     actions: Option<Action>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -213,6 +213,12 @@ impl WorkflowItem {
         self.variables = Some(vars);
         self
     }
+    pub fn args(mut self, arg: &str) -> WorkflowItem {
+        let mut vec = self.arg.unwrap_or_default();
+        vec.push(arg.to_string());
+        self.arg = Some(vec);
+        self
+    }
 }
 
 // in later
@@ -225,8 +231,8 @@ pub enum Action {
 
 impl Serialize for Action {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
+        where
+            S: Serializer,
     {
         match self {
             Action::SingleItem(var) => serializer.serialize_str(var),
