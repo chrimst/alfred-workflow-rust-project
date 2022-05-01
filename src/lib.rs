@@ -1,3 +1,5 @@
+extern crate core;
+
 pub mod alfred;
 pub mod alfred_logger;
 pub mod common;
@@ -170,7 +172,7 @@ mod env_tests {
             alfred.get_workflow_bundle_id(),
             "com.alfredapp.david.googlesuggest"
         );
-        assert_eq!(alfred.get_workflow_cache_path(), "cache_path");
+        assert_eq!(alfred.get_workflow_cache_path(), "./");
         assert_eq!(alfred.get_workflow_data_path(), "cache_path");
         assert_eq!(alfred.get_workflow_name(), "GoogleSuggest");
         assert_eq!(

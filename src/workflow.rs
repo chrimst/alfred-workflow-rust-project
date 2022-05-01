@@ -1,6 +1,8 @@
+use std::process::exit;
 use crate::alfred::{Alfred, AlfredEnv};
 use crate::workflow_item::WorkflowItem;
 use serde::{Deserialize, Serialize};
+use crate::icon::BuiltinIcon;
 
 // Alfred workflow object
 #[derive(Serialize, Deserialize)]
@@ -29,6 +31,20 @@ impl AlfredWorkflow {
     pub fn add_item(mut self, item: WorkflowItem) -> AlfredWorkflow {
         self.items.push(item);
         self
+    }
+
+    // pub fn add_item2(&mut self, item: WorkflowItem) {
+    //     let vec = &mut self.items;
+    //     vec.push(item);
+    // }
+
+    pub fn fatal_error(&mut self, msg: &str, detail: &str) {
+        let error = WorkflowItem::new(msg)
+            .subtitle(detail)
+            .icon(BuiltinIcon::ERROR.get_icon());
+        self.items = vec![error];
+        self.send_feedback();
+        exit(0)
     }
 }
 
