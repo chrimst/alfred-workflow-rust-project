@@ -1,4 +1,6 @@
+use std::borrow::Borrow;
 use serde::{Deserialize, Serialize};
+use std::process::Command;
 
 #[derive(Serialize, Deserialize)]
 pub struct Alfred {}
@@ -8,15 +10,70 @@ impl Alfred {
         Alfred {}
     }
 
-    pub fn search() {}
-    pub fn action() {}
-    pub fn browse() {}
-    pub fn set_theme() {}
-    pub fn reload() {}
-    pub fn trigger() {}
-    pub fn set_config() {}
-    pub fn remove_config() {}
-    pub fn action_with_types() {}
+    pub fn search(&self, query: &str) {
+        let script = format!("Application(\"{}\").search(\"{}\");", self.get_app_name(), query);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn action(&self, query: &str) {
+        let script = format!("Application(\"{}\").action(\"{}\");", self.get_app_name(), query);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn action_with_types(&self, query: &str, action_type: &str) {
+        let script = format!("Application(\"{}\").action(\"{}\",\"{}\");", self.get_app_name(), query, action_type);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn browse(&self, query: &str) {
+        let script = format!("Application(\"{}\").browse(\"{}\");", self.get_app_name(), query);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn set_theme(&self, theme: &str) {
+        let script = format!("Application(\"{}\").setTheme(\"{}\");", self.get_app_name(), theme);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn reload(&self, workflow: &str) {
+        let script = format!("Application(\"{}\").reloadWorkflow(\"{}\");", self.get_app_name(), workflow);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn trigger(&self, p1: &str, p2: &str) {
+        let script = format!("Application(\"{}\").runTrigger(\"{}\",\"{}\");", self.get_app_name(), p1, p2);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn set_config(&self, bundle: &str, query: &str) {
+        let script = format!("Application(\"{}\").setConfiguration(\"{}\",\"{}\");", self.get_app_name(), bundle, query);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+    pub fn remove_config(&self, bundle: &str, query: &str) {
+        let script = format!("Application(\"{}\").removeConfiguration(\"{}\",\"{}\");", self.get_app_name(), bundle, query);
+        let mut _command = std::process::Command::new("/usr/bin/osascript")
+            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .spawn();
+    }
+
+    pub fn get_app_name(&self) -> &str {
+        "com.runningwithcrayons.Alfred"
+    }
+}
+
+#[test]
+fn test_alfred_search() {
+    Alfred::init().browse("c");
+    Alfred::init().action("c");
 }
 
 pub trait AlfredEnv {
