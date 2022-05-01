@@ -1,6 +1,7 @@
 use std::borrow::Borrow;
 use serde::{Deserialize, Serialize};
 use std::process::Command;
+use serde::de::Unexpected::Str;
 
 #[derive(Serialize, Deserialize)]
 pub struct Alfred {}
@@ -52,19 +53,26 @@ impl Alfred {
             .args(["-l", "JavaScript", "-e", script.as_str()])
             .spawn();
     }
-    pub fn set_config(&self, bundle: &str, query: &str) {
-        let script = format!("Application(\"{}\").setConfiguration(\"{}\",\"{}\");", self.get_app_name(), bundle, query);
+    pub fn set_config(&self, bundle: &str, query: &str, query2: &str) {
+        let script = format!("\
+            tell application id \"{}\"
+                 set configuration \"{}\" to value \"{}\" in workflow \"{}\"
+            end
+        ", self.get_app_name(), query, query2, bundle);
         let mut _command = std::process::Command::new("/usr/bin/osascript")
-            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .args(["-e", script.as_str()])
             .spawn();
     }
     pub fn remove_config(&self, bundle: &str, query: &str) {
-        let script = format!("Application(\"{}\").removeConfiguration(\"{}\",\"{}\");", self.get_app_name(), bundle, query);
+        let script = format!("\
+            tell application id \"{}\"
+                 remove configuration \"{}\" in workflow \"{}\"
+            end
+        ", self.get_app_name(), query, bundle);
         let mut _command = std::process::Command::new("/usr/bin/osascript")
-            .args(["-l", "JavaScript", "-e", script.as_str()])
+            .args(["-e", script.as_str()])
             .spawn();
     }
-
     pub fn get_app_name(&self) -> &str {
         "com.runningwithcrayons.Alfred"
     }
@@ -76,6 +84,15 @@ fn test_alfred_search() {
     Alfred::init().action("c");
 }
 
+#[test]
+fn test_set_config() {
+    Alfred::init().set_config("com.christ.alfred.rust.demo", "test_rust_keu", "ccc")
+}
+
+#[test]
+fn test_remove_config() {
+    Alfred::init().remove_config("com.christ.alfred.rust.demo", "test_rust_keu")
+}
 pub trait AlfredEnv {
     fn get_preference_path(&self) -> String;
     fn get_preference_hash_path(&self) -> String;

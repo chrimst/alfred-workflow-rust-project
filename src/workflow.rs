@@ -46,6 +46,10 @@ impl AlfredWorkflow {
         self.send_feedback();
         exit(0)
     }
+
+    pub fn get_config(&self, name: &str) -> String {
+        std::env::var(name).unwrap_or_default()
+    }
 }
 
 impl AlfredEnv for AlfredWorkflow {

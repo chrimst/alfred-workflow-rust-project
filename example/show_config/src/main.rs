@@ -1,4 +1,4 @@
-use alfred_workflow_rust_project::alfred::AlfredEnv;
+use alfred_workflow_rust_project::alfred::{Alfred, AlfredEnv};
 use alfred_workflow_rust_project::workflow::AlfredWorkflow;
 use alfred_workflow_rust_project::workflow_item::WorkflowItem;
 
@@ -17,6 +17,7 @@ fn main() {
     let theme = workflow.get_theme();
     let theme_background = workflow.get_theme_background();
     let theme_select_background = workflow.get_theme_selection_background();
+    let test_config_key = workflow.get_config("test_config_var");
 
     workflow.add_item(WorkflowItem::new("cache_path")
         .subtitle(cache_path.as_str()))
@@ -44,5 +45,7 @@ fn main() {
             .subtitle(theme_background.as_str()))
         .add_item(WorkflowItem::new("theme_select_backgroud")
             .subtitle(theme_select_background.as_str()))
+        .add_item(WorkflowItem::new("config_env")
+            .subtitle(test_config_key.as_str()))
         .send_feedback();
 }
