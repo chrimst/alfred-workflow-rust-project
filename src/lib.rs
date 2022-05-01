@@ -11,6 +11,7 @@ pub mod workflow_config;
 pub mod workflow_item;
 pub mod workflow_keychain;
 pub mod workflow_updater;
+pub mod workflow_background;
 
 #[cfg(test)]
 mod tests {

@@ -86,6 +86,7 @@ fn test_is_file_exist() {
     print!("{:?}", result);
 
     let mut file = OpenOptions::new()
+        .create(true)
         .write(true)
         .append(true)
         .open("./test")
