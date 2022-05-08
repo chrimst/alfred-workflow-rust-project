@@ -1,6 +1,6 @@
 [package]
 name = "alfred-workflow-rust-project"
-version = "0.0.1-alpha"
+version = "0.0.2-alpha"
 authors = ["christmic <christophermins@gmail.com>"]
 description = "A library for alfred workflow(In Alpha Stage)"
 license = "MIT"
