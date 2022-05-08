@@ -4,8 +4,9 @@ A library for alfred workflow
 
 # Features
 * [Basic support for workflow script filter](https://www.alfredapp.com/help/workflows/inputs/script-filter/json/)
-* Builtin cache support
+* Builtin cache supported
 * Builtin API that can invoke alfred directly
+* Builtin logger supported
 * Auto updater support(workflow)
 * Keychain accessing support
 * Backgroud process support(often to cache or index some data)

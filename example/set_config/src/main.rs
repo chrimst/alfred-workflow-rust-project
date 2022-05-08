@@ -8,6 +8,6 @@ fn main() {
     let workflow = AlfredWorkflow::init();
 
     let bundle_id = workflow.get_workflow_bundle_id();
-    alfred.set_config(bundle_id.as_str(),config_key,"cc");
+    alfred.set_config(bundle_id.as_str(), config_key, "cc");
     print!("ccccc.........")
 }

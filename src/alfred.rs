@@ -1,13 +1,12 @@
-use std::borrow::Borrow;
 use serde::{Deserialize, Serialize};
-use std::process::Command;
-use serde::de::Unexpected::Str;
+use crate::alfred_logger::Logger;
 
 #[derive(Serialize, Deserialize)]
 pub struct Alfred {}
 
 impl Alfred {
     pub fn init() -> Alfred {
+        Logger::init();
         Alfred {}
     }
 
