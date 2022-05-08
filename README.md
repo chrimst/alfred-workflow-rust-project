@@ -8,6 +8,7 @@ A library for alfred workflow
 * Builtin API that can invoke alfred directly
 * Builtin logger supported
 * Builtin web/http supported
+* Builtin sqlite supported
 * Auto updater support(workflow)
 * Keychain accessing support
 * Backgroud process support(often to cache or index some data)
