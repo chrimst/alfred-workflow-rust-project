@@ -2,6 +2,7 @@ extern crate core;
 
 pub mod alfred;
 pub mod alfred_logger;
+pub mod alfred_web;
 pub mod common;
 pub mod icon;
 pub mod version;
