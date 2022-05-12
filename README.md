@@ -2,6 +2,10 @@
 A library for alfred workflow
 
 
+> So sorry the lib is still unstable and not be encouraged to use it yet
+> 
+> Any question please contact me(christophermins@gmail.com)
+
 # Features
 * [Basic support for workflow script filter](https://www.alfredapp.com/help/workflows/inputs/script-filter/json/)
 * Builtin cache supported

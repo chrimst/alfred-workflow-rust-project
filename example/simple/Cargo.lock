@@ -15,7 +15,7 @@ dependencies = [
 
 [[package]]
 name = "alfred-workflow-rust-project"
-version = "0.0.2-alpha"
+version = "0.0.3-alpha"
 dependencies = [
  "log",
  "log4rs",
